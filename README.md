@@ -21,6 +21,7 @@ Unity, C#, Android
 3. Switch platform to Android (File → Build Settings → Android → Switch Platform)
 4. Build and deploy to a connected Android device or emulator
 
-## Screenshots
 
-*(add a gif or 1-2 screenshots/gameplay clips here)*
+## Video
+https://github.com/user-attachments/assets/d484cff3-c2dc-48e3-9272-f0dbc098ad92
+
