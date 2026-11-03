@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "player",
     "maps": [
         {
@@ -27,7 +28,16 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "5c90b985-185f-46aa-be61-aea9e12e728a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "7f680fed-b271-40cc-ac94-c430eba0d97d",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -251,6 +261,17 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fe88e20-a518-44a2-acac-4619f6783af1",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

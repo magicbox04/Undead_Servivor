@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, Kill, Time, Health }
+    public enum InfoType { Exp, Level, Kill, Time, Health, Dash }
     public InfoType type;
 
     Text myText;
@@ -46,6 +46,12 @@ public class HUD : MonoBehaviour
                 float curHealth = GameManager.instance.health;
                 float maxHealth = GameManager.instance.maxHealth;
                 mySlider.value = curHealth / maxHealth;
+                break;
+
+            case InfoType.Dash:
+                float curDash = GameManager.instance.player.dashCoolTimer;
+                float maxDash = GameManager.instance.player.dashCooldown;
+                mySlider.value = curDash / maxDash;
                 break;
         }
     }

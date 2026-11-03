@@ -15,7 +15,12 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     Animator anim;
-    
+
+    public float dashDist = 3f;
+    public float dashCooldown = 2f;
+    public float dashCoolTimer;
+    Vector2 lastDir = Vector2.right;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -35,12 +40,18 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
+
+        if (dashCoolTimer > 0)
+        {
+            dashCoolTimer -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
     {
         if (!GameManager.instance.isLive)
             return;
+
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
         rigid.MovePosition(nextVec + rigid.position);
 
@@ -49,6 +60,10 @@ public class Player : MonoBehaviour
     void OnMove(InputValue value)
     {
         inputVec = value.Get<Vector2>();
+        if (inputVec != Vector2.zero)
+        {
+            lastDir = inputVec.normalized;
+        }
     }
 
     void LateUpdate()
@@ -81,5 +96,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+    public void OnDash()
+    {
+        if (!GameManager.instance.isLive || dashCoolTimer > 0)
+        {
+            return;
+        }
+
+        rigid.position = rigid.position + lastDir * dashDist;
+
+        dashCoolTimer = dashCooldown;
+        
+    }
 }

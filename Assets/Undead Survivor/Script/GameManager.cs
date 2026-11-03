@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public GameObject enemyCleaner;
     public Transform uiJoy;
+    public Transform uiDash;
 
     private void Awake()
     {
@@ -128,6 +129,7 @@ public class GameManager : MonoBehaviour
         isLive = false;
         Time.timeScale = 0;
         uiJoy.localScale = Vector3.zero;
+        uiDash.localScale = Vector3.zero;
     }
 
     public void Resume()
@@ -135,5 +137,6 @@ public class GameManager : MonoBehaviour
         isLive = true;
         Time.timeScale = 1;
         uiJoy.localScale = Vector3.one;
+        uiDash.localScale = Vector3.one;
     }
 }
