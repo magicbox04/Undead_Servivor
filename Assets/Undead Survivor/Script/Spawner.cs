@@ -5,8 +5,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
-
     public SpawnData[] spawnData;
+    public float levelTime;
     
     int level;
     float timer;
@@ -14,12 +14,15 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
+        levelTime = GameManager.instance.maxGameTime / spawnData.Length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1);
+        if (!GameManager.instance.isLive)
+            return;
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), spawnData.Length - 1);
         timer += Time.deltaTime;
         
         if (timer > spawnData[level].spawnTime)
@@ -44,7 +47,6 @@ public class Spawner : MonoBehaviour
 public class SpawnData
 {
     public float spawnTime;
-    
     public int spriteType;
     public int health;
     public float speed;
