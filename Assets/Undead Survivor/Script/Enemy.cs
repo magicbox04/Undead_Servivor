@@ -106,21 +106,22 @@ public class Enemy : MonoBehaviour
             {
                 AudioManager.instance.Playsfx(AudioManager.Sfx.Dead);
             }
-        }    
-
-        IEnumerator KnockBack()
-        {
-            yield return wait;
-            Vector3 playerPos = GameManager.instance.player.transform.position;
-            Vector3 dirVec = transform.position - playerPos;
-
-            rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
-        }
-
-
-        void Dead()
-        {
-            gameObject.SetActive(false);
         }
     }
+
+    IEnumerator KnockBack()
+    {
+        yield return wait;
+        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 dirVec = transform.position - playerPos;
+
+        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+    }
+
+
+    void Dead()
+    {
+        gameObject.SetActive(false);
+    }
+    
 }
