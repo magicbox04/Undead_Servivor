@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriter;
     Animator anim;
     WaitForFixedUpdate wait;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -100,7 +100,24 @@ public class Enemy : MonoBehaviour
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
             GameManager.instance.kill++;
-            GameManager.instance.GetExp();
+            GameObject coin = GameManager.instance.pool.Get(3);
+            coin.transform.position = transform.position;
+
+            float random = Random.value;
+            if (random < 0.88f)
+            {
+                GameObject item = GameManager.instance.pool.Get(4);
+
+                item.transform.position = transform.position + Vector3.up * 0.5f;
+
+            }
+
+            if (random < 0.88f)
+            {
+                GameObject item = GameManager.instance.pool.Get(5);
+                item.transform.position = transform.position + Vector3.up * 0.5f;
+
+            }
 
             if (GameManager.instance.isLive)
             {
