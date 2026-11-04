@@ -81,8 +81,8 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-
-        GameManager.instance.health -= 10 * Time.deltaTime;
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        GameManager.instance.health -= enemy.damage * Time.deltaTime;
 
         if (GameManager.instance.health < 0)
         {

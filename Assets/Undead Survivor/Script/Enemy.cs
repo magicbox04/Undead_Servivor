@@ -9,15 +9,21 @@ public class Enemy : MonoBehaviour
     public float maxHealth;
     public RuntimeAnimatorController[] animatorController;
     public Rigidbody2D target;
-
+    public float damage = 10f;
+    public bool isElite = false;
     bool isAlive;
-
+    
     Rigidbody2D rigid;
     Collider2D colider;
     SpriteRenderer spriter;
     Animator anim;
     WaitForFixedUpdate wait;
 
+    public float healthMod = 1f;
+    public float speedMod = 1f;
+    public int coinNum = 1;
+
+    SpawnData splitSpawnData;
     // Start is called before the first frame update
     void Awake()
     {
@@ -70,10 +76,11 @@ public class Enemy : MonoBehaviour
 
     public void Init(SpawnData data)
     {
+        splitSpawnData = data;
         anim.runtimeAnimatorController = animatorController[data.spriteType];
-        speed = data.speed;
-        maxHealth = data.health;
-        health = data.health;
+        speed = data.speed * speedMod;
+        maxHealth = data.health * healthMod;
+        health = maxHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -100,11 +107,14 @@ public class Enemy : MonoBehaviour
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
             GameManager.instance.kill++;
-            GameObject coin = GameManager.instance.pool.Get(3);
-            coin.transform.position = transform.position;
-
+            for (int i = 0; i < coinNum; i++)
+            {
+                GameObject coin = GameManager.instance.pool.Get(3);
+                coin.transform.position = transform.position;
+            }
+            
             float random = Random.value;
-            if (random < 0.88f)
+            if (random < 0.01f)
             {
                 GameObject item = GameManager.instance.pool.Get(4);
 
@@ -112,11 +122,21 @@ public class Enemy : MonoBehaviour
 
             }
 
-            if (random < 0.88f)
+            if (random < 0.03f)
             {
                 GameObject item = GameManager.instance.pool.Get(5);
                 item.transform.position = transform.position + Vector3.up * 0.5f;
 
+            }
+
+            if (isElite == true && GameManager.instance.isLive)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    GameObject splitEnemy = GameManager.instance.pool.Get(0);
+                    splitEnemy.transform.position = transform.position;
+                    splitEnemy.GetComponent<Enemy>().Init(splitSpawnData);
+                }
             }
 
             if (GameManager.instance.isLive)
@@ -138,6 +158,7 @@ public class Enemy : MonoBehaviour
 
     void Dead()
     {
+    
         gameObject.SetActive(false);
     }
     

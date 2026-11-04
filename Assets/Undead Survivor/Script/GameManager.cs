@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     public Transform uiJoy;
     public Transform uiDash;
 
+    public Transform uiPauseButton;
+    public GameObject uiPausePannel;
+
     private void Awake()
     {
         instance = this;
@@ -138,5 +141,21 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         uiJoy.localScale = Vector3.one;
         uiDash.localScale = Vector3.one;
+    }
+
+    public void Pause()
+    {
+        uiPausePannel.SetActive(true);
+        Stop();
+        AudioManager.instance.Effectbgm(true);
+        AudioManager.instance.Playsfx(AudioManager.Sfx.Select);
+    }
+
+    public void Unpause()
+    {
+        uiPausePannel.SetActive(false);
+        Resume();
+        AudioManager.instance.Effectbgm(false);
+        AudioManager.instance.Playsfx(AudioManager.Sfx.Select);
     }
 }

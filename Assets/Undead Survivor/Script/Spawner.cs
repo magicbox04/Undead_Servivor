@@ -7,7 +7,8 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
     public float levelTime;
-    
+    public float eliteChance = 0.1f;
+
     int level;
     float timer;
 
@@ -36,7 +37,12 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject enemy = GameManager.instance.pool.Get(0);
+        int isElite = Random.value < eliteChance ? 6 : 0;
+        if (isElite == 6)
+        {
+            Debug.Log("This is elite spawn. You should see it");
+        }
+        GameObject enemy = GameManager.instance.pool.Get(isElite);
 
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         enemy.GetComponent<Enemy>().Init(spawnData[level]);
