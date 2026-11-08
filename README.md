@@ -1,27 +1,29 @@
 # Undead Survivor
 
-A 2D top-down mobile survival game inspired by *Vampire Survivors*, built in Unity (C#) for Android.
+A 2D top-down mobile survival game inspired by *Vampire Survivors*, built in Unity (C#) for Android moved to windows for app3.
 
-## Features
+## New Features that are not from the base tutorial video
 
-- Infinite, procedurally-extending map
-- Object pooling for enemies/projectiles (keeps frame rate stable at high enemy counts)
-- Character and weapon selection — customizable playstyle each run
-- Wave-based enemy spawning with scaling difficulty
-- Touch controls optimized for mobile play
+Dash button with a top cooldown UI
+EXP drop and a little pull if you get close
 
-## Tech Stack
+Magnets that pull everything
 
-Unity, C#, Android
+Heal Packs that heal when you get it
 
-## Run It
+Elite Enemies with higher damage and Hp with lower speed and better reward
 
-1. Clone the repo
-2. Open in Unity Hub (version: *[fill in]*), with Android Build Support installed
-3. Switch platform to Android (File → Build Settings → Android → Switch Platform)
-4. Build and deploy to a connected Android device or emulator
+Splitting Enemy that splits into two regular goons when they die
 
 
-## Video
-https://github.com/user-attachments/assets/d484cff3-c2dc-48e3-9272-f0dbc098ad92
+
+## Tutorial used
+
+https://youtube.com/playlist?list=PLO-mt5Iu5TeZF8xMHqtT\_DhAPKmjF6i3x\&si=RWlBNj2HT4eKP3h8
+
+https://www.youtube.com/watch?v=LXX\_p33C0NM
+
+https://www.youtube.com/watch?v=6iSJ\_jh6Rdo
+
+https://www.youtube.com/watch?v=TE9cu5itlMk
 
